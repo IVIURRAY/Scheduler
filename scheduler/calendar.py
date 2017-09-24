@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta, date, time
 
 class Calendar(object):
     pass
@@ -74,11 +74,11 @@ class Slot(object):
     Similar to in Microsoft Outlook where you block time into your calendar.
     """
 
-    def __init__(self, task, start=datetime.datetime.time(), duration=30):
+    def __init__(self, task):
         self.task = task
-        self.start = task.starttime or start
-        self.duration = (task.starttime + datetime.timedelta(minutes=task.duration))
-        self.end = self.start + datetime.timedelta(duration.hour, duration.minute)
+        self.duration = task.duration
+        self.start = task.starttime if self.task.fixed() else time()
+        self.end = datetime.combine(date.today(), self.start) + self.duration
 
     def slot(self):
         return dict(

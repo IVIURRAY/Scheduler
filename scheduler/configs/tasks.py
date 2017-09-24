@@ -7,57 +7,57 @@ IDEAS:
 
 """
 import datetime
-
+from scheduler.task import Task
 
 TASKS = [
-    dict(
+    Task(
         title='Sleeping',
         duration=420,
     ),
 
-    dict(
+    Task(
         title='Breakfast',
         duration=15,
     ),
 
-    dict(
+    Task(
         title='Commute',
         duration=45,
     ),
 
-    dict(
+    Task(
         title='Work-morning',
         starttime=datetime.time(9),
         duration=45,
     ),
 
-    dict(
+    Task(
         title='Gym',
         starttime=datetime.time(13),
         duration=80,
     ),
 
-    dict(
+    Task(
         title='Work-afternoon',
         duration=300,
     ),
 
-    dict(
+    Task(
         title='Comute Home',
         duration=60,
     ),
 
-    dict(
+    Task(
         title='Dinner',
         duration=90,
     ),
 
-    dict(
+    Task(
         title='Wash',
         duration=30,
     ),
 
-    dict(
+    Task(
         title='Bedtime',
         duration=300,
     )

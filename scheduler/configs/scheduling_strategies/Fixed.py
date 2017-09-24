@@ -20,7 +20,9 @@ class Fixed(Strategy):
 
     def organise_todo(self):
         for task in self.day.todo:
+            print 'Adding: ', task.title
             self.day.next_available_slot(task)
+
 
     def tasks_to_organise(self):
         """Only organise tasks that have a fixed starttime.
@@ -34,6 +36,7 @@ class Fixed(Strategy):
             else:
                 self.day.add_task(task)
 
+        print 'Tasks:', self.day.todo
         return self.day.todo
 
     def sort_tasks(self, tasks):
