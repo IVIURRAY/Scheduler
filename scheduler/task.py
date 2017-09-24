@@ -18,6 +18,15 @@ class Task(object):
         # Optional
         self.starttime = starttime
 
+    def fixed(self):
+        return bool(self.starttime)
+
+    def completed(self):
+        if self.complete:
+            raise ValueError('This task has alreadt been marked as completed.')
+
+        self.complete = True
+
     def info(self):
         print '##############################'
         print '#  Title:        %5s' % self.title
@@ -25,5 +34,4 @@ class Task(object):
         print '#  Duration:     %5i (mins)' % (self.duration.seconds / 60)
         print '##############################'
 
-    def fixed(self):
-        return bool(self.starttime)
+
