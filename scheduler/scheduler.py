@@ -1,3 +1,6 @@
+from scheduler.configs.scheduling_strategies.Fixed import Fixed
+from scheduler.configs.tasks import TASKS
+from scheduler.calendar import Day
 
 
 class Scheduler(object):
@@ -6,26 +9,27 @@ class Scheduler(object):
     Ideally the scheduler should know how and when to schedule tasks based on importance.
     """
 
-    def __init__(self, tasks):
-        self.tasks = tasks
-        self.schedulingStrategy = self._getSchedulingStrategy()
+    def __init__(self, strategy, day=None):
+        self.strategy = strategy
+        self.day = day or Day()
 
-    def _getSchedulingStrategy(self):
-            return ''
+    # def carriedTasks(self):
+    #     """This works out what tasks have been carried over from previous days.
+    #
+    #     Maybe there needs to be a re-ordering here to get these tasks complete.
+    #     """
 
-    def carriedTasks(self):
-        """This works out what tasks have been carried over from previous days.
-
-        Maybe there needs to be a re-ordering here to get these tasks complete.
-        """
+    def schedule(self):
+        self.day.apply_strategy(self.strategy)
 
 
-
-def schedule(tasks):
-
-    if not tasks:
-        # TODO Think of a better way to handle no tasks.
-        print 'There are no tasks to schedule'
-
-    shed = Scheduler(tasks)
+def schedule():
+    shed = Scheduler(Fixed(tasks=TASKS))
     shed.schedule()
+
+
+# Request(
+#     strategy='',
+#     # tasks
+#     # day=''
+# )

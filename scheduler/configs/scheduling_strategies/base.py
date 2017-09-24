@@ -8,9 +8,9 @@ class Strategy(object):
     and also tasks that are needing to be scheduled.
     """
 
-    def __init__(self, day=None):
+    def __init__(self, tasks=[], day=None):
         self.day = day or Day()
-        self.tasks = []
+        self.tasks = tasks
 
     def name(self):
         return 'base'
@@ -20,16 +20,14 @@ class Strategy(object):
 
     def handle_fixed_tasks(self):
         """For any tasks with a fixed starttime we should handle these first."""
-        for task in self.tasks:
-            if task.fixed():
-                self.day.add_task_todo(task)
+        [self.day.add_task_todo(task) for task in self.tasks if task.fixed()]
 
     def _check_fixed_tasks(self, day):
         m = dict()
         for task in self.day.todo:
             # Need to map starttime to duration and make sure none cross over.
             # maybe this would be best handled to the slot
-
+            pass
 
     def organise(self):
         raise BaseException('Strategies should over write this method to organise.')
