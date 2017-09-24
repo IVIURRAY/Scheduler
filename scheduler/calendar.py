@@ -65,6 +65,9 @@ class Day(Week):
     def apply_strategy(self, strategy):
         strategy.organise()
 
+    def calendar(self):
+        print 'Calendar for tasks today!'
+        [task.info() for task in self.todo]
 
 
 # TODO: This should really be a Enum

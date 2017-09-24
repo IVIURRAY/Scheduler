@@ -18,16 +18,5 @@ class Strategy(object):
     def details(self):
         return 'This is the base class for strategies. Inherit this class into a strategy'
 
-    def handle_fixed_tasks(self):
-        """For any tasks with a fixed starttime we should handle these first."""
-        [self.day.add_task_todo(task) for task in self.tasks if task.fixed()]
-
-    def _check_fixed_tasks(self, day):
-        m = dict()
-        for task in self.day.todo:
-            # Need to map starttime to duration and make sure none cross over.
-            # maybe this would be best handled to the slot
-            pass
-
     def organise(self):
         raise BaseException('Strategies should over write this method to organise.')

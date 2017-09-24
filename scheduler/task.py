@@ -8,6 +8,8 @@ class Task(object):
     A task is something that needs to be done there and then.
     """
 
+    TIME_TOKEN = '%H:%M'
+
     def __init__(self, title='Default Task', duration=30, starttime=datetime.time()):
         self.title = title
         self.duration = datetime.timedelta(minutes=duration)
@@ -18,8 +20,9 @@ class Task(object):
 
     def info(self):
         print '##############################'
-        print 'Title: %s' % self.title
-        print 'Duration: %s' % self.duration
+        print '#  Title:        %5s' % self.title
+        print '#  Start:        %5s '% self.starttime.strftime(self.TIME_TOKEN) if self.starttime else 'None'
+        print '#  Duration:     %5i (mins)' % (self.duration.seconds / 60)
         print '##############################'
 
     def fixed(self):
